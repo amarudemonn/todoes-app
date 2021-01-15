@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Todoes | Home
+{% endblock %}
+
+{% block content %}
+  <section id="info">
+    <h1>Hello, <span class="primary-color">{{ user.username }}</span></h1>
+    <h2>Current tasks: <span class="primary-color">{{ current_tasks_total }}</span></h2>
+    <h2>Completed tasks: <span class="primary-color">{{ completed_tasks_total }}</span></h2>
+  </section>
+
+  <main id="tasks" class="container">
+    <section id="create-task">
+      <h2>Create task</h1>
+      <form action="{{ url_for('index') }}" method="POST">
+        <div class="form-group">
+          <input id="task" name="task" type="text" required placeholder="Your task" autocomplete="off">
+        </div>
+        <button class="btn btn-success">Create Task</button>
+      </form>
+    </section>
+
+    <section id="current-tasks">
+      <h2>Current tasks</h2>
+      {% if not current_tasks %}
+        <p>You don't have tasks just yet</p>
+      {% else %}
+        <ul>
+          {% for task in current_tasks %}
+            <li class="task">
+              <span>{{ task[1] }}<span class="primary-color">:{{ task[2] }}</span></span>
+              <a href="{{ url_for('action', action_type='update', task_id=task[0]) }}" class="primary-color"><i class="fas fa-check"></i></a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+
+    <section id="completed-tasks">
+      <h2>Completed tasks</h2>
+      {% if not completed_tasks %}
+        <p>You don't have tasks just yet</p>
+      {% else %}
+        <ul>
+          {% for task in completed_tasks %}
+            <li class="task">
+              <span>{{ task[1] }}<span class="primary-color">:{{ task[2] }}</span></span>
+              <a href="{{ url_for('action', action_type='delete', task_id=task[0]) }}" class="danger-color"><i class="fas fa-times"></i></a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+  </main>
+{% endblock %}

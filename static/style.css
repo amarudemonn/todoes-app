@@ -1,0 +1,329 @@
+/* Resets */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+area,
+button,
+[role="button"],
+input:not([type=range]),
+label,
+select,
+summary,
+textarea {
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+}
+
+/* Variables */
+:root {
+  --primary-color: #1976d2;
+  --secondary-color: #888;
+  --success-color: #4ba114;
+  --danger-color: #f44336;
+}
+
+/* Core Styles */
+
+body {
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #f6f6f6;
+  color: #333;
+}
+
+section, #main-footer {
+  padding: 1rem;
+}
+
+/* Utility */
+.container {
+  margin: auto;
+  max-width: 992px;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.danger-color {
+  color: var(--danger-color);
+}
+
+.task a.primary-color,
+.task a.danger-color {
+  transition: transform 0.5s;
+}
+
+.primary-color:hover {
+  color: #1e83e7;
+}
+
+.danger-color:hover {
+  color: #db3529;
+}
+
+.task a.primary-color:hover,
+.task a.danger-color:hover {
+  transform: rotate(-15deg);
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.alert {
+  padding: 0.5rem 0;
+  color: #fff;
+  text-align: center;
+}
+
+.alert-danger {
+  background: var(--danger-color);
+}
+
+.alert-success {
+  background: var(--success-color);
+}
+
+.form-group {
+  margin-bottom: 0.25rem;
+}
+
+.form-group input, .btn {
+  background: #eee;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form-group input, .btn-block {
+  display: block;
+  width: 100%;
+}
+
+.form-group input {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+}
+
+.form-group input:focus {
+  border: 1px solid var(--primary-color);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+}
+
+.btn:hover {
+  background: #ddd;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn-primary,
+.btn-success {
+  color: #fff
+}
+
+.btn-primary {
+  background: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background: #1e83e7;
+}
+
+.btn-success {
+  background: var(--success-color);
+}
+
+.btn-success:hover {
+  background: #53b616;
+}
+
+
+/* Header */
+
+#main-header {
+  background: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#main-header .logo {
+  margin-left: 0.4rem;
+}
+
+/* Navigation */
+
+#main-navigation ul {
+  display: flex;
+}
+
+#main-navigation ul a {
+  display: block;
+  color: #fff;
+  padding: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#main-navigation ul a:hover {
+  background: #fff;
+  color: var(--primary-color);
+}
+
+/* Section: login & register */
+
+section#login, section#register, footer {
+  text-align: center;
+}
+
+.logo-container {
+  margin-bottom: 0.5rem;
+}
+
+section#login .logo,
+section#register .logo {
+  color: var(--primary-color);
+}
+
+section#login p
+section#register p {
+  margin: 0.5rem 0;
+}
+
+section#login .btn,
+section#register .btn {
+  margin-top: 0.5rem;
+}
+
+section#login,
+section#register {
+  margin: auto;
+  max-width: 340px;
+}
+
+/* Section: info */
+#info {
+  text-align: center;
+}
+
+/* Tasks */
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Footer */
+#main-footer {
+  color: var(--secondary-color);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  h1.logo {
+    font-size: 5rem;
+  }
+  
+  .logo-container h2,
+  #main-navigation,
+  .form-group input,
+  .btn,
+  .form-container p {
+    font-size: 1.5rem;
+  }
+
+  section#login,
+  section#register {
+    height: calc(100vh - 52px - 94px);
+    text-align: center;
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+  }
+
+  section#info {
+    height: calc(100vh - 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  section#info h1 {
+    font-size: 4rem;
+  }
+
+  section#info h2 {
+    font-size: 3rem;
+  }
+  
+  main#tasks {
+    font-size: 200% !important;
+  }
+
+  .form-container {
+    width: 80%;
+  }
+
+  .form-container input {
+    padding: 0.6rem 1rem;
+  }
+
+  footer {
+    font-size: 1.3rem;
+  }
+}

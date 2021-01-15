@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+  <header id="main-header">
+    <a href="{{ url_for('index') }}" class="logo">Taskdoes</a>
+
+    <nav id="main-navigation">
+      <ul>
+        {% if not session.user_id %}
+          <li><a href="{{ url_for('login') }}">Log In</a></li>
+          <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% else %}
+          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for message in messages %}
+          {% if message[0] == 'error' %}
+            <div class="alert alert-danger">
+              <p>{{ message[1] }}</p>
+            </div>
+          {% else %}
+            <div class="alert alert-success">
+              <p>{{ message[1] }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}
+
+  {% endblock %}
+  <footer id="main-footer">
+    <p><small>Copyright &copy; 2021. By Akari. All rights reserved.</small></p>
+    <p><small>Todoes.</small></p>
+  </footer>
+</body>
+
+</html>
