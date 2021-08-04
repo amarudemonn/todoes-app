@@ -46,7 +46,9 @@ db.Index("is_completed_idx", Task.is_completed)
 db.Index("task_id_idx", Task.id)
 
 
-# db.create_all()
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 @app.route("/", methods=["GET", "POST"])
