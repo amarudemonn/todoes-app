@@ -9,7 +9,7 @@ from helpers import starts_with_number, contains_numbers, doesnt_have_symbols, g
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-    "DATABASE_URI", "sqlite:///data.db")
+    "DATABASE_URL", "sqlite:///data.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.urandom(32)
 app.config["SESSION_TYPE"] = "filesystem"
